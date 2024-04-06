@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Department } from '../../shared/models/department';
 import { City } from '../../shared/models/city';
@@ -12,7 +12,7 @@ import { MatOptionSelectionChange } from '@angular/material/core';
   templateUrl: './delivery.component.html',
   styleUrls: ['./delivery.component.scss'],
 })
-export class DeliveryComponent {
+export class DeliveryComponent implements OnDestroy {
   departments$: Observable<Department[]> = of([]);
   cities$: Observable<City[]> = of([]);
   formDisplay: FormGroup;
@@ -24,6 +24,11 @@ export class DeliveryComponent {
   ) {
     this.formDisplay = this.buildFormDisplay();
     this.departments$ = this.citiesService.getDepartments();
+  }
+
+  ngOnDestroy(): void {
+    localStorage.removeItem('address');
+    localStorage.clear();
   }
 
   private buildFormDisplay(): FormGroup {
@@ -64,7 +69,7 @@ export class DeliveryComponent {
     this.formDisplay.reset();
     const duration: number = 6000
     this.matSnackBar.open('¡Dirección almacenada correctamente!', 'Cerrar', {
-      duration
+      duration,
     })
   }
 
