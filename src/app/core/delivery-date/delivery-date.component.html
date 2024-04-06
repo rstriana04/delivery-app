@@ -1,0 +1,11 @@
+<div class="container">
+  <mat-card>
+    <mat-card-content>
+      <h3>Formulario fecha y hora entrega</h3>
+      <p>{{formDeliveryDate.get('date')?.value | date:'short'}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary">Guardar</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

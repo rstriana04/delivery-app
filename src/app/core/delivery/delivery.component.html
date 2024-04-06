@@ -1,0 +1,66 @@
+<div class="container">
+  <form [formGroup]="formDisplay" (ngSubmit)="sendFormDisplay(formDisplay)">
+    <mat-card>
+      <mat-card-content class="columns">
+        <h3>Formulario dirección</h3>
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Departamento</mat-label>
+          <mat-select formControlName="department">
+            <mat-option *ngFor="let department of departments$ | async"
+                        (onSelectionChange)="getCitiesByDepartment(department, $event)"
+                        [value]="department.name">{{ department.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full" *ngIf="(cities$ | async)?.length">
+          <mat-label>Ciudad</mat-label>
+          <mat-select formControlName="city">
+            <mat-option *ngFor="let city of cities$ | async"
+                        [value]="city.name">{{ city.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Complemento</mat-label>
+          <mat-select formControlName="complement">
+            <mat-option value="calle">Calle</mat-option>
+            <mat-option value="carrera">Carrera</mat-option>
+            <mat-option value="avenida">Avenida</mat-option>
+            <mat-option value="transversal">Transversal</mat-option>
+            <mat-option value="circunvalar">Circunvalar</mat-option>
+            <mat-option value="diagonal">Diagonal</mat-option>
+            <mat-option value="avenida">Avenida</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Calle #</mat-label>
+          <input formControlName="streetNumber" type="number" matInput>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Complemento</mat-label>
+          <input formControlName="streetComplement" type="text" matInput>
+        </mat-form-field>
+        <p>#</p>
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>#</mat-label>
+          <input formControlName="streetNumberComplementFirst" type="number" matInput>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>#</mat-label>
+          <input formControlName="streetNumberComplementTwo" type="number" matInput>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Complemento</mat-label>
+          <input formControlName="streetNumberComplement" type="text" matInput>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">Guardar</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>
+<div class="container">
+  <app-display></app-display>
+</div>
+<router-outlet></router-outlet>

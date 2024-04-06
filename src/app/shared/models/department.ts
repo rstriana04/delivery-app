@@ -1,0 +1,20 @@
+export interface Department {
+  id: number,
+  name: string,
+  description: string,
+  cityCapitalId: number,
+  municipalities: number,
+  surface: number,
+  population: number,
+  phonePrefix: string,
+  countryId: number,
+  cityCapital: string |  null,
+  country: string | null,
+  cities: string | null,
+  regionId: number,
+  region: string | null,
+  naturalAreas: string | null,
+  maps: string | null,
+  indigenousReservations: string | null,
+  airports: string | null
+}
